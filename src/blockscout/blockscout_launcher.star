@@ -247,7 +247,6 @@ def get_config_frontend(
             "NEXT_PUBLIC_HAS_BEACON_CHAIN": "true",
             "NEXT_PUBLIC_NETWORK_VERIFICATION_TYPE": "validation",
             "NEXT_PUBLIC_NETWORK_ICON": "https://ethpandaops.io/logo.png",
-            # "NEXT_PUBLIC_APP_HOST": "0.0.0.0",
             "NEXT_PUBLIC_APP_PROTOCOL": "http",
             "NEXT_PUBLIC_APP_HOST": "127.0.0.1",
             "NEXT_PUBLIC_APP_PORT": str(HTTP_PORT_NUMBER_FRONTEND),
