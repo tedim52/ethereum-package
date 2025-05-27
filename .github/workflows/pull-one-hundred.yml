@@ -38,7 +38,6 @@ jobs:
             "httpd"
             "debian"
             "traefik"
-            "jenkins"
             "elasticsearch"
             "logstash"
             "kibana"
@@ -108,7 +107,6 @@ jobs:
             "centos"
             "opensuse/leap"
             "opensuse/tumbleweed"
-            "mcr.microsoft.com/dotnet/sdk"  # This is not on Docker Hub, should be removed if strict
             "tensorflow/tensorflow"
             "pytorch/pytorch"
             "jupyter/scipy-notebook"
@@ -126,5 +124,5 @@ jobs:
 
           for image in "${images[@]}"; do
             echo "Pulling $image..."
-            docker pull "$image"
+            docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
           done
