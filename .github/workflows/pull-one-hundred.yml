@@ -7,9 +7,7 @@ jobs:
   pull-images:
     runs-on: ubuntu-latest
     steps:
-      # - name: Set up Docker
-      #   uses: docker/setup-buildx-action@v3
-
+      # authenticated with docker.io
       # - uses: ./.github/actions/docker-login
       #   with:
       #     username: tedim52
@@ -21,7 +19,7 @@ jobs:
       #     password: ${{ secrets.DOCKER_PASSWORD }}
 
 
-      - name: Pull Docker Hub Images
+      - name: Pull Docker Hub Images (First Round)
         run: |
           images=(
             "alpine"
@@ -67,6 +65,40 @@ jobs:
             "bitnami/apache"
             "bitnami/minio"
             "bitnami/kafka"
+           )
+          for image in "${images[@]}"; do
+            echo "Pulling $image..."
+            docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
+          done
+
+      - name: Remove Images to make space
+        run: |
+          docker image prune -a -f
+
+      - name: Pull Docker Hub Images (Second Round)
+        run: |
+          images=(
+            "rockylinux/rockylinux"
+            "fedora"
+            "archlinux"
+            "clearlinux/stable"
+            "oraclelinux"
+            "centos"
+            "opensuse/leap"
+            "opensuse/tumbleweed"
+            "tensorflow/tensorflow"
+            "pytorch/pytorch"
+            "jupyter/scipy-notebook"
+            "jupyter/base-notebook"
+            "jupyter/minimal-notebook"
+            "apache/airflow"
+            "confluentinc/cp-kafka"
+            "confluentinc/cp-zookeeper"
+            "confluentinc/cp-schema-registry"
+            "confluentinc/cp-kafka-connect"
+            "minio/minio"
+            "selenium/standalone-chrome"
+            "selenium/standalone-firefox"
             "bitnami/zookeeper"
             "bitnami/wordpress"
             "bitnami/drupal"
@@ -99,29 +131,7 @@ jobs:
             "circleci/nginx"
             "circleci/docker"
             "amazonlinux"
-            "rockylinux/rockylinux"
-            "fedora"
-            "archlinux"
-            "clearlinux/stable"
-            "oraclelinux"
-            "centos"
-            "opensuse/leap"
-            "opensuse/tumbleweed"
-            "tensorflow/tensorflow"
-            "pytorch/pytorch"
-            "jupyter/scipy-notebook"
-            "jupyter/base-notebook"
-            "jupyter/minimal-notebook"
-            "apache/airflow"
-            "confluentinc/cp-kafka"
-            "confluentinc/cp-zookeeper"
-            "confluentinc/cp-schema-registry"
-            "confluentinc/cp-kafka-connect"
-            "minio/minio"
-            "selenium/standalone-chrome"
-            "selenium/standalone-firefox"
-          )
-
+            )
           for image in "${images[@]}"; do
             echo "Pulling $image..."
             docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
