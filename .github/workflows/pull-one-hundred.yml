@@ -21,9 +21,17 @@ jobs:
       - name: Install regctl
         uses: regclient/actions/regctl-installer@ce5fd131e371ffcdd7508b478cb223b3511a9183
 
-      - name: Check Docker Hub Rate Limits
+      - name: Logout from Docker Hub registry
         shell: bash
-        run: regctl image ratelimit ubuntu:latest
+        run: |
+          regctl registry logout docker.io
+
+      - name: Check Docker Hub Rate Limits
+
+        shell: bash
+        run: |
+          regctl registry logout docker.io
+          regctl image ratelimit ubuntu:latest
 
       - name: Initialize Counter
         run: echo "COUNTER=1" >> $GITHUB_ENV
