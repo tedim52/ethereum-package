@@ -7,6 +7,9 @@ jobs:
   pull-images:
     runs-on: ubuntu-latest
     steps:
+      - name: Initialize Counter
+        run: echo "1" > $GITHUB_ENV
+
       # authenticated with docker.io
       # - uses: ./.github/actions/docker-login
       #   with:
@@ -67,8 +70,9 @@ jobs:
             "bitnami/kafka"
            )
           for image in "${images[@]}"; do
-            echo "Pulling $image..."
+            echo "Pull #${{ env.COUNTER }}: Pulling $image..."
             docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
+            echo "COUNTER=$(( ${{ env.COUNTER }} + 1 ))" >> $GITHUB_ENV
           done
 
       - name: Remove Images to make space
@@ -123,8 +127,9 @@ jobs:
             "bitnami/kafka"
            )
           for image in "${images[@]}"; do
-            echo "Pulling $image..."
+            echo "Pull #${{ env.COUNTER }}: Pulling $image..."
             docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
+            echo "COUNTER=$(( ${{ env.COUNTER }} + 1 ))" >> $GITHUB_ENV
           done
 
       - name: Remove Images to make space
@@ -179,6 +184,121 @@ jobs:
             "bitnami/kafka"
            )
           for image in "${images[@]}"; do
-            echo "Pulling $image..."
+            echo "Pull #${{ env.COUNTER }}: Pulling $image..."
             docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
+            echo "COUNTER=$(( ${{ env.COUNTER }} + 1 ))" >> $GITHUB_ENV
+          done
+
+      - name: Remove Images to make space
+        run: |
+          docker image prune -a -f
+
+      - name: Pull Docker Hub Images (Fourth Round)
+        run: |
+          images=(
+            "alpine"
+            "ubuntu"
+            "nginx"
+            "redis"
+            "postgres"
+            "node"
+            "python"
+            "golang"
+            "mongo"
+            "mysql"
+            "busybox"
+            "httpd"
+            "debian"
+            "traefik"
+            "elasticsearch"
+            "logstash"
+            "kibana"
+            "vault"
+            "consul"
+            "haproxy"
+            "php"
+            "ruby"
+            "openjdk"
+            "tomcat"
+            "influxdb"
+            "grafana/grafana"
+            "prom/prometheus"
+            "prom/alertmanager"
+            "telegraf"
+            "zookeeper"
+            "cassandra"
+            "rabbitmq"
+            "bitnami/nginx"
+            "bitnami/mariadb"
+            "bitnami/redis"
+            "bitnami/postgresql"
+            "bitnami/mongodb"
+            "bitnami/jenkins"
+            "bitnami/grafana"
+            "bitnami/prometheus"
+            "bitnami/apache"
+            "bitnami/minio"
+            "bitnami/kafka"
+           )
+          for image in "${images[@]}"; do
+            echo "Pull #${{ env.COUNTER }}: Pulling $image..."
+            docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
+            echo "COUNTER=$(( ${{ env.COUNTER }} + 1 ))" >> $GITHUB_ENV
+          done
+
+      - name: Remove Images to make space
+        run: |
+          docker image prune -a -f
+
+      - name: Pull Docker Hub Images (Fifth Round)
+        run: |
+          images=(
+            "alpine"
+            "ubuntu"
+            "nginx"
+            "redis"
+            "postgres"
+            "node"
+            "python"
+            "golang"
+            "mongo"
+            "mysql"
+            "busybox"
+            "httpd"
+            "debian"
+            "traefik"
+            "elasticsearch"
+            "logstash"
+            "kibana"
+            "vault"
+            "consul"
+            "haproxy"
+            "php"
+            "ruby"
+            "openjdk"
+            "tomcat"
+            "influxdb"
+            "grafana/grafana"
+            "prom/prometheus"
+            "prom/alertmanager"
+            "telegraf"
+            "zookeeper"
+            "cassandra"
+            "rabbitmq"
+            "bitnami/nginx"
+            "bitnami/mariadb"
+            "bitnami/redis"
+            "bitnami/postgresql"
+            "bitnami/mongodb"
+            "bitnami/jenkins"
+            "bitnami/grafana"
+            "bitnami/prometheus"
+            "bitnami/apache"
+            "bitnami/minio"
+            "bitnami/kafka"
+           )
+          for image in "${images[@]}"; do
+            echo "Pull #${{ env.COUNTER }}: Pulling $image..."
+            docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
+            echo "COUNTER=$(( ${{ env.COUNTER }} + 1 ))" >> $GITHUB_ENV
           done
