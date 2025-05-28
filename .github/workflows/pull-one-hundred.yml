@@ -7,9 +7,6 @@ jobs:
   pull-images:
     runs-on: ubuntu-latest
     steps:
-      - name: Initialize Counter
-        run: echo "1" > $GITHUB_ENV
-
       # authenticated with docker.io
       # - uses: ./.github/actions/docker-login
       #   with:
@@ -21,6 +18,8 @@ jobs:
       #     username: ethpandaops
       #     password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Initialize Counter
+        run: echo "COUNTER=1" >> $GITHUB_ENV
 
       - name: Pull Docker Hub Images (First Round)
         run: |
