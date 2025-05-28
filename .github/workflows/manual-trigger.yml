@@ -18,10 +18,11 @@ jobs:
       #     username: ethpandaops
       #     password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # - uses: ./.github/actions/docker-login
-      #   with:
-      #     username: tedim52
-      #     password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: ./.github/actions/docker-login
+        with:
+          username: tedim52
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
       - name: Setup Kurtosis
         uses: ./.github/actions/kurtosis-install
       - name: Run Starlark
