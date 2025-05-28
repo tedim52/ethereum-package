@@ -18,6 +18,13 @@ jobs:
       #     username: ethpandaops
       #     password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Install regctl
+        uses: regclient/actions/regctl-installer@ce5fd131e371ffcdd7508b478cb223b3511a9183
+
+      - name: Check Docker Hub Rate Limits
+        shell: bash
+        run: regctl image ratelimit ubuntu:latest
+
       - name: Initialize Counter
         run: echo "COUNTER=1" >> $GITHUB_ENV
 
@@ -73,6 +80,10 @@ jobs:
             docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
             echo "COUNTER=$((${{ env.COUNTER }} + 1))" >> $GITHUB_ENV
           done
+
+      - name: Check Docker Hub Rate Limits
+        shell: bash
+        run: regctl image ratelimit ubuntu:latest
 
       - name: Remove Images to make space
         run: |
@@ -131,6 +142,10 @@ jobs:
             echo "COUNTER=$((${{ env.COUNTER }} + 1))" >> $GITHUB_ENV
           done
 
+      - name: Check Docker Hub Rate Limits
+        shell: bash
+        run: regctl image ratelimit ubuntu:latest
+
       - name: Remove Images to make space
         run: |
           docker image prune -a -f
@@ -187,6 +202,10 @@ jobs:
             docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
             echo "COUNTER=$((${{ env.COUNTER }} + 1))" >> $GITHUB_ENV
           done
+
+      - name: Check Docker Hub Rate Limits
+        shell: bash
+        run: regctl image ratelimit ubuntu:latest
 
       - name: Remove Images to make space
         run: |
@@ -245,6 +264,10 @@ jobs:
             echo "COUNTER=$((${{ env.COUNTER }} + 1))" >> $GITHUB_ENV
           done
 
+      - name: Check Docker Hub Rate Limits
+        shell: bash
+        run: regctl image ratelimit ubuntu:latest
+
       - name: Remove Images to make space
         run: |
           docker image prune -a -f
@@ -301,6 +324,10 @@ jobs:
             docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
             echo "COUNTER=$((${{ env.COUNTER }} + 1))" >> $GITHUB_ENV
           done
+
+      - name: Check Docker Hub Rate Limits
+        shell: bash
+        run: regctl image ratelimit ubuntu:latest
 
       - name: Remove Images to make space
         run: |
@@ -359,6 +386,10 @@ jobs:
             echo "COUNTER=$((${{ env.COUNTER }} + 1))" >> $GITHUB_ENV
           done
 
+      - name: Check Docker Hub Rate Limits
+        shell: bash
+        run: regctl image ratelimit ubuntu:latest
+
       - name: Remove Images to make space
         run: |
           docker image prune -a -f
@@ -416,6 +447,10 @@ jobs:
             echo "COUNTER=$((${{ env.COUNTER }} + 1))" >> $GITHUB_ENV
           done
 
+      - name: Check Docker Hub Rate Limits
+        shell: bash
+        run: regctl image ratelimit ubuntu:latest
+
       - name: Remove Images to make space
         run: |
           docker image prune -a -f
@@ -472,3 +507,7 @@ jobs:
             docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
             echo "COUNTER=$((${{ env.COUNTER }} + 1))" >> $GITHUB_ENV
           done
+
+      - name: Check Docker Hub Rate Limits
+        shell: bash
+        run: regctl image ratelimit ubuntu:latest 
