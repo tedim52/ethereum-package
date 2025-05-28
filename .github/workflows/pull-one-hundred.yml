@@ -71,7 +71,7 @@ jobs:
           for image in "${images[@]}"; do
             echo "Pull #${{ env.COUNTER }}: Pulling $image..."
             docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
-            echo "COUNTER=$(( ${{ env.COUNTER }} + 1 ))" >> $GITHUB_ENV
+            echo "COUNTER=$((${{ env.COUNTER }} + 1))" >> $GITHUB_ENV
           done
 
       - name: Remove Images to make space
@@ -128,7 +128,7 @@ jobs:
           for image in "${images[@]}"; do
             echo "Pull #${{ env.COUNTER }}: Pulling $image..."
             docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
-            echo "COUNTER=$(( ${{ env.COUNTER }} + 1 ))" >> $GITHUB_ENV
+            echo "COUNTER=$((${{ env.COUNTER }} + 1))" >> $GITHUB_ENV
           done
 
       - name: Remove Images to make space
@@ -185,7 +185,7 @@ jobs:
           for image in "${images[@]}"; do
             echo "Pull #${{ env.COUNTER }}: Pulling $image..."
             docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
-            echo "COUNTER=$(( ${{ env.COUNTER }} + 1 ))" >> $GITHUB_ENV
+            echo "COUNTER=$((${{ env.COUNTER }} + 1))" >> $GITHUB_ENV
           done
 
       - name: Remove Images to make space
@@ -242,7 +242,7 @@ jobs:
           for image in "${images[@]}"; do
             echo "Pull #${{ env.COUNTER }}: Pulling $image..."
             docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
-            echo "COUNTER=$(( ${{ env.COUNTER }} + 1 ))" >> $GITHUB_ENV
+            echo "COUNTER=$((${{ env.COUNTER }} + 1))" >> $GITHUB_ENV
           done
 
       - name: Remove Images to make space
@@ -299,5 +299,5 @@ jobs:
           for image in "${images[@]}"; do
             echo "Pull #${{ env.COUNTER }}: Pulling $image..."
             docker pull "docker.io/$image" || echo "Failed to pull $image — skipping."
-            echo "COUNTER=$(( ${{ env.COUNTER }} + 1 ))" >> $GITHUB_ENV
+            echo "COUNTER=$((${{ env.COUNTER }} + 1))" >> $GITHUB_ENV
           done
