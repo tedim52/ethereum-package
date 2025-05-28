@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # authenticated with docker.io
-      # - uses: ./.github/actions/docker-login
-      #   with:
-      #     username: tedim52
-      #     password: ${{ secrets.DOCKER_PASSWORD }}
+      - uses: ./.github/actions/docker-login
+        with:
+          username: tedim52
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       # - uses: ./.github/actions/docker-login
       #   with:
