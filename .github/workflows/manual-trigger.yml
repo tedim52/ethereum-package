@@ -25,8 +25,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - run: |
+          echo "DOCKER_CONFIG":
           echo $DOCKER_CONFIG
-
+          cat ~/.docker/config.json
+          
       - name: Setup Kurtosis
         uses: ./.github/actions/kurtosis-install
       - name: Run Starlark
